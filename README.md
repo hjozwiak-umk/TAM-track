@@ -6,7 +6,9 @@ Welcome to TAM-Track, a sophisticated computational tool designed to optimize an
 
 Clone the repository using:
 
-`git clone [repository-link]`
+```
+git clone https://github.com/hjozwiak-umk/TAM-track/
+```
 
 ## Dependencies
 
@@ -17,19 +19,23 @@ Clone the repository using:
 
 You can install the required packages using:
 
-`pip install numpy matplotlib scipy`
+```
+pip install numpy matplotlib scipy
+```
 
 ## Usage
 
 Adjust parameters in predict_total_angular_momentum.py and execute:
 
-`python run.py`
+```
+python run.py
+```
 
 ## Data Format
 
 The script expects input data in a two-column format:
 
-- Energy (cm-1)
+- Energy (cm<sup>-1</sup>)
 - TAM_max
 
 Tab-separated values are provided in an example file "TAM_max.dat".
@@ -44,7 +50,7 @@ The script `predict_total_angular_momentum.py` is designed to:
 5. Optionally, plot both the original data along with the fitting curve and predictions.
 6. Save the predictions to a designated output file.
 
-This analysis is crucial for prediciting the number of total angular momenta that are needed to converge quantum scattering calculations 
+This analysis is crucial for predicting the number of total angular momenta that are needed to converge quantum scattering calculations 
 for different collision energies.
 
 ## Background
@@ -60,22 +66,22 @@ However, just as the expansion in partial waves is in principle infinite, so too
 For complex systems such as diatomic-diatomic collisions, optimizing computation through parallelization—solving for separate TAM blocks and summing the results—is crucial. The key question becomes: How many TAMs are needed to converge the cross-sections?
 
 ### TAM-Track's Solution
-TAM-Track addresses this by identifying the relationship between the maximum TAM required for convergence and total energy, which tends to follow a power law at higher energies. This observation aligns with classical expectations where energy is proportional to the square of angular momentum (E ~ J^2).
+TAM-Track addresses this by identifying the relationship between the maximum TAM required for convergence and total energy, which tends to follow a power law at higher energies. This observation aligns with classical expectations where energy is proportional to the square of angular momentum (E ~ J<sup>2</sup>).
 
 **Workflow**
 - Run initial calculations with a scattering code to establish a baseline for convergence at various energy levels using a minimal rotational basis (noting that TAM(E) should remain consistent despite changes in the rotational basis).
 - Record the maximum TAM needed at each energy point.
 - Fit these data points to a power law.
-- Use this model to predict required TAM values over a new grid of desired collision energies, considering specific molecular states (e.g., CO in J=8 and N2 in J=6, with an energy offset of approximately 222 cm-1).
+- Use this model to predict required TAM values over a new grid of desired collision energies, considering specific molecular states (e.g., CO in J=8 and N<sub>2</sub> in J=6, with an energy offset of approximately 222 cm<sup>-1</sup>).
 
-## Test case: CO-N2 scattering
+## Test case: CO-N<sub>2</sub> scattering
 As a practical application of TAM-Track, we explore the quantum scattering of carbon monoxide (CO) in the j=8 rotational state and nitrogen (N2) in the j=6 rotational state.
 
-The initial TAM values were obtained from preliminary scattering calculations where both CO and N2 were in the J=0 state. The convergence criterion was established such that the calculations terminated once four consecutive TAM blocks modified the largest elastic and the largest inelastic cross-section by less than  10-3 A^2.
+The initial TAM values were obtained from preliminary scattering calculations where both CO and N<sub>2</sub> were in the J=0 state. The convergence criterion was established such that the calculations terminated once four consecutive TAM blocks modified the largest elastic and the largest inelastic cross-section by less than  10<sup>-3</sup> A<sup>2</sup>.
 
-The objective is now to predict how many TAM blocks are needed to achieve the same level of convergence for a set kinetic energy grid with CO in j=8 and N2 in j=6. The internal energies of the two molecules define an energy offset (ECO+EN2=222cm-1).
+The objective is now to predict how many TAM blocks are needed to achieve the same level of convergence for a set kinetic energy grid with CO in j=8 and N<sub>2</sub> in j=6. The internal energies of the two molecules define an energy offset (E<sub>CO</sub>+E<sub>N2</sub>=222cm<sup>-1</sup>).
 
-The power law is fitted to data points with energies greater than 60 cm-1. Predicted TAM values for different energies are then saved to a new file.
+The power law is fitted to data points with energies greater than 60 cm<sup>-1</sup>. Predicted TAM values for different energies are then saved to a new file.
 
 ## Contributing
 
