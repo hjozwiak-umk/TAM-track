@@ -84,7 +84,7 @@ The objective is now to predict how many TAM blocks are needed to achieve the sa
 The power law is fitted to data points with energies greater than 60 cm<sup>-1</sup>. Predicted TAM values for different energies are then saved to a new file.
 
 An example of the TAM vs energy dependence is provided below for the test CO-N<sub>2</sub> case.
-![TAM(E) test](media/tam_track_example.png)
+![TAM(E) test](media/tam_track_example.svg)
 
 ## Contributing
 
